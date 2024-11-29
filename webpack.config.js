@@ -2,7 +2,6 @@ const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-
     // BUNDLES JAVASCRIPT, $ npx webpack OR $ npm run build
     mode: "development",
     entry: "./src/script.js",
