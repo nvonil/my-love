@@ -1,0 +1,264 @@
+* {
+    margin: 0;
+    padding: 0;
+
+    background-color: var(--light-pink);
+    color: black;
+    font-family: "Pinyon Script", Times;
+    font-weight: 300;
+
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --light-pink: #fff0f3;
+    --dark-pink: #a4133c;
+}
+
+a {
+    color: black;
+}
+
+section {
+    width: 100vw;
+    height: 100vh;
+}
+
+section {
+    opacity: 0;
+    transform: translateY(1px);
+    transition: all 0.5s ease-in-out;
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========== Intro ========== */
+@keyframes intro-fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes heart-bounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-50%);
+    }
+}
+
+#intro {
+    animation: intro-fadeIn 3s ease-in-out;
+}
+
+#intro.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.intro-text,
+.content-text-wrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.intro-text {
+    font-size: 3rem;
+}
+
+.intro-heart-wrapper,
+.content-heart-wrapper {
+    position: absolute;
+    bottom: 2.5%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#intro-heart,
+#content-heart {
+    cursor: pointer;
+    font-size: 1.5rem;
+
+    animation: heart-bounce 3s infinite ease-in-out;
+    transition: color 0.3s;
+}
+
+#intro-heart:hover,
+#content-heart:hover {
+    color: var(--dark-pink);
+}
+
+#intro-heart:hover::after,
+#content-heart:hover::after {
+    content: "click me!";
+    white-space: nowrap;
+
+    position: absolute;
+    left: 50%;
+    top: -2rem;
+    transform: translateX(-50%);
+
+    color: var(--dark-pink);
+    font-family: Times;
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+
+/* ========== Content ========== */
+.content-text-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.content-text {
+    color: var(--dark-pink);
+    font-size: 3rem;
+
+    padding-bottom: 3rem;
+}
+
+.content-subtext,
+.content-name {
+    font-family: Times;
+    font-size: 1.25rem;
+    line-height: 2rem;
+}
+
+.content-name {
+    align-self: flex-end;
+    padding: 1rem 1rem 0 0;
+}
+
+#content-heart:hover::after {
+    content: "click me again!";
+}
+
+/* ========== Images ========== */
+:root {
+    --row1-width: 13232px;
+    --row2-width: 7118px;
+    --row3-width: 9048px;
+}
+
+@keyframes images-slide-right-row1 {
+    from {
+        transform: translateX(calc(-1 * var(--row1-width) / 2));
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes images-slide-left-row2 {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(calc(-1 * var(--row2-width) / 2));
+    }
+}
+
+@keyframes images-slide-right-row3 {
+    from {
+        transform: translateX(calc(-1 * var(--row3-width) / 2));
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+#images {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.images-container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+
+    height: 100%;
+}
+
+.images-row1 .images-wrapper {
+    width: var(--row1-width);
+    animation: images-slide-right-row1 80s linear infinite;
+}
+
+.images-row2 .images-wrapper {
+    width: var(--row2-width);
+    animation: images-slide-left-row2 40s linear infinite;
+}
+
+.images-row3 .images-wrapper {
+    width: var(--row3-width);
+    animation: images-slide-right-row3 80s linear infinite;
+}
+
+.images-wrapper img {
+    border-radius: 1rem;
+    height: 250px;
+    margin: 0 0.5rem;
+}
+
+/* ========== Cursor ========== */
+@keyframes cursor-fadeInOut {
+    0%,
+    100% {
+        opacity: 0;
+    }
+    20%,
+    80% {
+        opacity: 1;
+    }
+}
+
+@keyframes cursor-moveHeart {
+    from {
+        transform: translate(0) rotate(0deg);
+    }
+    to {
+        transform: translate(150px) rotate(360deg);
+    }
+}
+
+span {
+    animation: cursor-fadeInOut 5s infinite;
+    filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.5));
+    pointer-events: none;
+    position: absolute;
+}
+
+span::before {
+    content: "";
+
+    width: 25px;
+    height: 25px;
+
+    position: absolute;
+
+    background: url(/images/heart.png);
+    background-size: cover;
+
+    animation: cursor-moveHeart 3s infinite linear;
+}
+
+@media (max-width: 400px) {
+    #intro-heart,
+    #content-heart {
+        display: none;
+    }
+}
