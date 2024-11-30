@@ -256,7 +256,7 @@ span::before {
     animation: cursor-moveHeart 3s infinite linear;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 450px) {
     #intro-heart,
     #content-heart {
         display: none;
